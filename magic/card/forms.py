@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm, HiddenInput, PasswordInput
 
-from .models import Card
-
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
