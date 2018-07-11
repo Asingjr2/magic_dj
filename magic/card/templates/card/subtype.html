@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <h1>CARD SUBTYPES</h1>
+    <section>
+       <ol>
+           {% for type in subtypes %}
+           <li> {{ type }}</li>
+           {% endfor %}
+       </ol>
+    </section>
+</div>
+{% endblock %}

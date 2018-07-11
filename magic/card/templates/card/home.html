@@ -1,0 +1,41 @@
+<!-- 
+    Start template to pull and access data...base attributes
+    By type (color), effect, cost (converted or not),  attack, toughness, series (standard/modern/old), and perhaps an extension for meta deck list types/a deck constructor.
+ -->
+
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container">
+    <section>
+        <div class="card text-center" style="width: 18rem;">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">{{ card.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">RARITY</span>  {{ card.rarity }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">TYPE</span>  {{ card.type }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">SUBTYPES</span> {{ card.substypes }} </h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">TOUGHNESS</span>  {{ card.toughness }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">COLORS</span>  {{ card.colors }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">TYPE</span>  {{ card.type }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-secondary">ID</span>  {{ card.id }}</h6>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+{% endblock %}

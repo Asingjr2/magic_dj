@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="title" content="Todo App {% block meta_title %}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+        <meta property="og:url" content="{{ request.get_full_path }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Todo App: {% block meta_og_title %}{% endblock %}" />
+        <meta property="og:description" content="{% block meta_og_description %}{% endblock %}" />
+        <meta property="og:image" content="" />
+        <title>Todo App</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- <script  src=' {% static "base/static/base/jquery.js" %}' ></script> -->
+        <!-- <link rel="stylesheet" type='text/css' href="{%  static 'static/base/style.css' %}"> -->
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item" id="fl_left">
+                            <h3>Welcome Back {{ user.username }}</h3>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/home" class="nav-link">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/all_cards" class="nav-link">ALL CARDS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/card_types" class="nav-link">CARD TYPES
+                            <span class="badge badge-secondary">{{ card_type_total }}</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/card_subtypes" class="nav-link">CARD SUBTYPES
+                            <span class="badge badge-secondary">{{ card_subtype_total }}</span> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">LOGOUT</a>
+                        </li>
+                    </ul>
+            </header>
+            <div class="container">
+                {% block body %}{% endblock %}
+            </div>
+            {% block extra_js %}{% endblock %}
+        </div>
+    </body>
+</html>
+        
