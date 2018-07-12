@@ -4,16 +4,6 @@ from django.contrib.auth.models import User
 from base.models import BaseModel
 
 
-# Create your models here.
-# class Card(BaseModel):
-#     name = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.name
-
-#     # def get_absolute_url(self):
-#     #     return reverse("card_detail", args(self.id,))
-
 class MagicCard(BaseModel):
     name = models.CharField(max_length=100)
 

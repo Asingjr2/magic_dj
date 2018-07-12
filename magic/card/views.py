@@ -3,6 +3,7 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.views.generic.detail import DetailView
+from django.core.cache import cache
 
 from mtgsdk import Card
 from mtgsdk import Type
@@ -29,13 +30,12 @@ class RegisterView(View):
             password = form.cleaned_data["password"]
             user.set_password(password)
             user.save()
-            print("valid")
             return redirect("/login")
         else:
             if 'username' in form.errors:
                 messages.warning(request, 'Username does not meet requirements.  Please try again.')
             if 'password' in form.errors:
-                messages.warning(request, 'Passwrod does not meet requirements.  Please try again.')
+                messages.warning(request, 'Password does not meet requirements.  Please try again.')
             return redirect("/")
 
 
@@ -57,6 +57,8 @@ class LoginView(View):
                 user = authenticate(username = username, password = password)
                 if user is not None:
                     login(request, user)
+                    # Querying MTG DB for random 200 cards
+                    cache.set("small_card_set", Card.where(page=1).where(pageSize=5, random=True).all(), 200)
                     return redirect("/home")
                 else:
                     messages.warning(request, 'Username or password does not match our records')
@@ -71,6 +73,7 @@ class CardHomeView(View):
 
     def get(self, request):
         test_card = Card.find(386616)
+        print("random card check {}".format(cache.get("small_card_set")))
         context = {
             "card": test_card , 
             "card_type_total": len(Type.all()), 
@@ -84,12 +87,28 @@ class CardHomeView(View):
 class AllCardsView(View):
     template_name = "card/all_cards.html"
 
+    # def get(self, request):
+    #     # Pulling all cards count is demanding and would load slow.  Probably best to due asynchonously.  Not sure whether to house in session or DB.
+    #     # all_cards_set = Card.all()
+    #     all_cards = Card.where(page=5).where(pageSize=6).all()
+    #     context = {
+    #         "all_cards" : all_cards,
+    #         "card_type_total": len(Type.all()), 
+    #         "card_subtype_total" : len(Subtype.all())  
+    #     }
+    #     print("all cards{}".format(all_cards))
+    #     return render(request, self.template_name, context)
+
+    # Practice Cache
     def get(self, request):
-        # Pulling all cards count is demanding and would load slow.  Probably best to due asynchonously.  Not sure whether to house in session or DB.
-        # all_cards_set = Card.all()
         all_cards = Card.where(page=5).where(pageSize=6).all()
+        cache.set("all_cards", all_cards, 100)
+        test_cache = cache.get("all_cards")
+        print(test_cache)
+        small_set = cache.get("full_card_set1")
         context = {
             "all_cards" : all_cards,
+            "15": small_set,
             "card_type_total": len(Type.all()), 
             "card_subtype_total" : len(Subtype.all())  
         }
