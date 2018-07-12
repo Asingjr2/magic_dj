@@ -8,31 +8,31 @@
 <div class="container">
     <section>
         <div class="card text-center" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src=" {{ card.imageUrl }} " alt="Picture of {{ card.name }}">
             <div class="card-body">
             <h5 class="card-title">{{ card.name }}</h5>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">RARITY</span>  {{ card.rarity }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">RARITY</span>  {{ card.rarity }}</h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">TYPE</span>  {{ card.type }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.type }}</h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">SUBTYPES</span> {{ card.substypes }} </h6>
+                    <h6 class="card-text"><span class="badge badge-warning">SUBTYPES</span> {{ card.subtypes }} </h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">TOUGHNESS</span>  {{ card.toughness }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">TOUGHNESS</span>  {{ card.toughness }}</h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">COLORS</span>  {{ card.colors }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">COLORS</span>  {{ card.colors }}</h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">TYPE</span>  {{ card.type }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.type }}</h6>
                 </li>
                 <li class="list-group-item">
-                    <h6 class="card-text"><span class="badge badge-secondary">ID</span>  {{ card.id }}</h6>
+                    <h6 class="card-text"><span class="badge badge-warning">ID</span>  {{ card.id }}</h6>
                 </li>
             </ul>
         </div>

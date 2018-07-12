@@ -1,3 +1,8 @@
+<!-- 
+    Could use django built in tag like forloop counter to add full grid for spacing.
+    Could add query parameter in search form to reduce search objects but they would need to be stored in DB.
+    Not sure how to do this effetively or if we should just allow user to add items they want to personal deck and also get card details.
+ -->
 {% extends 'layout.html' %}
 {% block body %}
 <div class="container">
@@ -7,9 +12,59 @@
            {% for card in cards %}
                 <li> {{ card.name }}</li>
            {% empty %}
-                <h4>No Tasks Yet</h4>
+                <h4>No CARDS/ DECK Yet</h4>
            {% endfor %}
        </ol>
     </section>
 </div>
+
+<div>
+    <div class="row">
+            <div class="col-3">
+                <p>QUERY FORM</p>
+                <form>
+                        <div class="form-group">    
+                          <label for="exampleFormControlSelect2">Select types(s) to narrow search</label>
+                          <select multiple class="form-control" id="exampleFormControlSelect2">
+                              {% for type in card_type_total %}
+                                <option> {{ type }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <button>
+                            <input type="submit">
+                            NARROW SEARCH
+                        </button>
+                      </form>
+                </div>
+                <div class="col-1"></div>
+                <div class="col">
+                <div class="row">
+                    {% for card in card_set %}
+                    <div class="card" style="width: 17rem;">
+                            <div  id="overflow" class="card-body">
+                              <h5 class="card-title">{{  card.name }}</h5>
+                              <p class="card-text"> {{ card.type }} </p>
+                              <p class="card-text"><span class="badge badge-warning">RARITY</span>  {{ card.rarity }}</p>
+                              <p class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.type }}</p>
+                              <p class="card-text"><span class="badge badge-warning">SUBTYPES</span> {{ card.subtypes }} </p>
+                              <p class="card-text"><span class="badge badge-warning">TOUGHNESS</span>  {{ card.toughness }}</p>
+                              <p class="card-text"><span class="badge badge-warning">COLORS</span>  {{ card.colors }}</p>
+                              <p class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.type }}</p>
+                              <p class="card-text"><span class="badge badge-warning">ID</span>  {{ card.id }}</p>
+                              <div class="card-footer">
+                                <button class="btn"
+                                > Add to Deck</button>
+                              </div>
+                        
+                            <img class="card-img-bottom" src=" {{ card.imageUrl }}" alt="Picture of {{ card.name }} ">
+                        </div>
+                        </div>
+                    {% endfor %}
+            </div >
+        </div>
+    </div>
+           
+</div>
 {% endblock %}
+
