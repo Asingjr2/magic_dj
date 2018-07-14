@@ -26,7 +26,6 @@ class MagicCard(BaseModel):
     year = models.CharField(max_length=200, default="n/a")
     mana = models.IntegerField(default=0)
     card_set = models.CharField(max_length=200, default="n/a")
-    # May be a list of abilites so creating new class
     triggered_ability = models.ForeignKey(TriggeredAbility, on_delete=models.CASCADE, null=True)
     activated_ability = models.ForeignKey(ActivatedAbility, on_delete=models.CASCADE, null=True)
     card_type = models.CharField(max_length=100, default="n/a")

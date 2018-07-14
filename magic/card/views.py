@@ -6,6 +6,11 @@ from django.views.generic.detail import DetailView
 # Cache module used to set card, type, and subtype list
 from django.core.cache import cache
 
+from django.core import serializers
+from django.http import JsonResponse
+
+import requests
+
 from mtgsdk import Card
 from mtgsdk import Type
 from mtgsdk import Subtype
@@ -85,9 +90,8 @@ class CardHomeView(View):
         # Additional context use to populate spans set in cache to avoid redundant queries
         context = {
             "card" : test_card,
-            "all_cards": cache.get("small_card_set") , 
-            "card_type_total": len(cache.get(card_type_total)), 
-            "card_subtype_total" : len(cache.get(card_subtype_total)) 
+            "card_type_total": len(cache.get("card_type_total")), 
+            "card_subtype_total" : len(cache.get("card_subtype_total")) 
         }
         return render(request, self.template_name, context)
 
@@ -99,9 +103,11 @@ class AllCardsView(View):
     def get(self, request):
         context = {
             "card_set" : cache.get("small_card_set"),
-            "card_type_total": len(cache.get("card_type_total")), 
+            "card_type_total_set" : cache.get("card_type_total"),
+            "card_type_total" : len(cache.get("card_type_total")), 
             "card_subtype_total" : len(cache.get("card_subtype_total"))  
         }
+        
         return render(request, self.template_name, context)
 
 

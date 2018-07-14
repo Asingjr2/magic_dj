@@ -37,5 +37,56 @@
             </ul>
         </div>
     </section>
+
+    <section>
+        <h1>MODEL</h1>
+        <div class="card text-center" style="width: 18rem;">
+            <img class="card-img-top" src=" {{ card.imageUrl }} " alt="Picture of {{ card.name }}">
+            <div class="card-body">
+            <h5 class="card-title">{{ card.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">QUOTE</span>  {{ card.text }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">MANA</span>  {{ card.colors }}</h6>
+                </li>
+                <li class="list-group-item">
+                        <h6 class="card-text"><span class="badge badge-warning">MANA COST</span>  {{ card.manaCost }}</h6>
+                    </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">YEAR</span>  {{ card.year }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">CARD SET</span>  {{ card.card_set }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.card_type }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">TRIGGERED ABILITY</span>  {{ card.triggered_ability.t_ability_name }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">ACTIVATED ABILITY</span>  {{ card.activated_ability.a_ability_name }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">SUBTYPES</span> {{ card.subtypes }} </h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">TOUGHNESS</span>  {{ card.toughness }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">COLORS</span>  {{ card.colors }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">TYPE</span>  {{ card.type }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="card-text"><span class="badge badge-warning">ID</span>  {{ card.id }}</h6>
+                </li>
+            </ul>
+        </div>
+    </section>
 </div>
 {% endblock %}
